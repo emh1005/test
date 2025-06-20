@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Team</title>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <h1>Our Team</h1>
+  <ul id="team-list"></ul>
+
+  <script>
+    const publicCSV =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRcP5HOrSompUZ4G42SITWZvZOMdEVnrixoy9myNj606weBZ3AbRgNooqCAUmbRfbaIAuP-lXY9WYRS/pub?output=csv";
+
+  const corsProxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(publicCSV) + `&=${Date.now()}`;
+
+Papa.parse(corsProxy, {
+  download: true,
+  header: true,
+  complete: function(results) {
+    const data = results.data;
+    console.log(data);
+    const list = document.getElementById("team-list");
+    data.forEach(row => {
+      const li = document.createElement("li");
+      li.textContent = `${row.name} - ${row.role}`;
+      list.appendChild(li);
+    });
+  },
+  error: function(err) {
+    console.error(err);
+  }
+});
+
+const swCode = `
+      self.addEventListener('install', event => {
+        self.skipWaiting();
+      });
+
+      self.addEventListener('activate', event => {
+        clients.claim();
+      });
+
+      // Optional: cache stuff or do offline work here
+    `;
+
+    // Convert it to a Blob and register it
+    // if ('serviceWorker' in navigator) {
+    //   const blob = new Blob([swCode], { type: 'application/javascript' });
+    //   const swUrl = URL.createObjectURL(blob);
+
+    //   navigator.serviceWorker.register(swUrl).then(reg => {
+    //     reg.onupdatefound = () => {
+    //       const newWorker = reg.installing;
+    //       newWorker.onstatechange = () => {
+    //         if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+    //           if (confirm("New version available. Reload?")) {
+    //             window.location.reload();
+    //           }
+    //         }
+    //       };
+    //     };
+    //   }).catch(err => {
+    //     console.error('Service Worker registration failed:', err);
+    //   });
+    // }
+
+
+  fetch('./data.csv').catch(function(e) { console.log(e) })
+      .then(response => response.text())
+      .then(csvText => {
+        const data = Papa.parse(csvText, { header: true }).data;
+        const list = document.getElementById('team-list');
+
+        data.forEach(member => {
+          const li = document.createElement('li');
+          li.textContent = `${member.name} - ${member.role}`;
+          list.appendChild(li);
+        });
+      });
+
+//   function fetchData(csvData) {
+//     var list = $('<ul></ul>');
+//     $(csvData).each(function (i, rowData) {
+//         var listItem = $('<li></li>');
+//         listItem.text(rowData.join(' | ')); // Join each cell with a separator
+//         list.append(listItem);
+//     });
+//     return list;
+// }
+
+// $.ajax({
+//     type: "GET",
+//     url: "data.csv",
+//     success: function (data) {
+//         var parsedData = Papa.parse(data).data;
+//         $('body').append(fetchData(parsedData));
+//     }
+// });
+
+  </script>
+</body>
+</html>
