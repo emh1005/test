@@ -10,40 +10,40 @@
   <ul id="team-list"></ul>
 
   <script>
-    const publicCSV =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRcP5HOrSompUZ4G42SITWZvZOMdEVnrixoy9myNj606weBZ3AbRgNooqCAUmbRfbaIAuP-lXY9WYRS/pub?output=csv";
+//     const publicCSV =
+//   "https://docs.google.com/spreadsheets/d/e/2PACX-1vRcP5HOrSompUZ4G42SITWZvZOMdEVnrixoy9myNj606weBZ3AbRgNooqCAUmbRfbaIAuP-lXY9WYRS/pub?output=csv";
 
-  const corsProxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(publicCSV) + `&=${Date.now()}`;
+//   const corsProxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(publicCSV) + `&=${Date.now()}`;
 
-Papa.parse(corsProxy, {
-  download: true,
-  header: true,
-  complete: function(results) {
-    const data = results.data;
-    console.log(data);
-    const list = document.getElementById("team-list");
-    data.forEach(row => {
-      const li = document.createElement("li");
-      li.textContent = `${row.name} - ${row.role}`;
-      list.appendChild(li);
-    });
-  },
-  error: function(err) {
-    console.error(err);
-  }
-});
+// Papa.parse(corsProxy, {
+//   download: true,
+//   header: true,
+//   complete: function(results) {
+//     const data = results.data;
+//     console.log(data);
+//     const list = document.getElementById("team-list");
+//     data.forEach(row => {
+//       const li = document.createElement("li");
+//       li.textContent = `${row.name} - ${row.role}`;
+//       list.appendChild(li);
+//     });
+//   },
+//   error: function(err) {
+//     console.error(err);
+//   }
+// });
 
-const swCode = `
-      self.addEventListener('install', event => {
-        self.skipWaiting();
-      });
+// const swCode = `
+//       self.addEventListener('install', event => {
+//         self.skipWaiting();
+//       });
 
-      self.addEventListener('activate', event => {
-        clients.claim();
-      });
+//       self.addEventListener('activate', event => {
+//         clients.claim();
+//       });
 
-      // Optional: cache stuff or do offline work here
-    `;
+//       // Optional: cache stuff or do offline work here
+//     `;
 
     // Convert it to a Blob and register it
     // if ('serviceWorker' in navigator) {
