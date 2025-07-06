@@ -1,0 +1,345 @@
+body {
+  font-family: "Source Sans 3", sans-serif;
+  padding: 0;
+  margin: 0;
+  /* height: 100vh; */
+}
+
+h1,
+h2 {
+  font-family: "Libre Baskerville", serif;
+}
+
+/*header*/
+/* for using bg img instead of img element
+header {
+  background-image: url("img/photo1.jpg");
+
+  height: 100vh;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+header {
+  position: relative;
+  color: white;
+}
+
+header img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+header h1 {
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+  font-size: 65px;
+  font-weight: 400;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+  text-align: right;
+  transition: all 0.2s ease-in-out;
+  height: auto;
+  background-color: transparent;
+
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+  padding: 20px 30px 0 30px;
+}
+
+.nav-name {
+  font-size: 30px;
+  font-family: "Libre Baskerville", serif;
+  margin: 0;
+  font-weight: 300;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.active {
+  background-color: #000;
+  opacity: 1;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.nav ul li {
+  margin: 0 12px;
+}
+
+.nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: all ease-in-out 0.25s;
+}
+
+.nav ul li a:hover {
+  color: #a2c1ff;
+  text-decoration: underline;
+}
+
+.lang {
+  background-color: aliceblue;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+/*about section*/
+#news {
+  text-align: center;
+  font-size: 30px;
+  padding: 50px 0;
+}
+
+.about-main {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr 1fr;
+}
+
+.about-main div h3 {
+  margin-bottom: -12px;
+}
+
+.about-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-main div {
+  padding: 20px 60px;
+}
+
+.about-main img:nth-of-type(odd) {
+  border-radius: 0 10px 10px 0;
+  grid-column: 1 / span 3;
+  grid-row: 1;
+}
+
+.about-main div:nth-of-type(odd) {
+  grid-column: 4 / span 4;
+  grid-row: 1;
+}
+
+.about-main img:nth-of-type(even) {
+  border-radius: 10px 0 0 10px;
+  grid-column: 5 / span 3;
+  grid-row: 2;
+}
+
+.about-main div:nth-of-type(even) {
+  grid-column: 1 / span 4;
+  grid-row: 2;
+}
+
+/*events section*/
+#events {
+  padding: 20px 60px;
+}
+
+.events-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+}
+
+.events-main article {
+  background-color: #a2c1ffa6;
+  border-radius: 10px;
+  transition: all ease-in-out 0.4s;
+  padding: 10px 20px;
+}
+
+.events-main article a {
+  text-decoration: none;
+}
+
+.events-main article:hover {
+  background-color: rgba(94, 142, 229, 0.8);
+}
+
+.events-main article a h3,
+.events-main article a p {
+  margin: 5px;
+}
+
+/*media section*/
+#media {
+  width: 100vw;
+  position: relative;
+  margin: auto;
+}
+
+#media h2 {
+  padding: 20px 60px;
+}
+
+.carousel-container {
+  position: relative;
+  max-width: 100vw;
+  height: 50vh;
+  margin: auto;
+  overflow: hidden;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-slide {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 100%;
+  gap: 30px;
+}
+
+.carousel-item {
+  flex: 0 0 calc((100% - 60px) / 3);
+  box-sizing: border-box;
+}
+
+.carousel-item img,
+.carousel-item iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  border: none;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 5px 5px 0;
+  user-select: none;
+
+  z-index: 1;
+}
+
+.next {
+  right: 0;
+  border-radius: 5px 0 0 5px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(26, 77, 171, 0.8);
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/*download & contact section*/
+#download,
+#contact {
+  padding: 20px 60px;
+}
+
+#download div {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+#download a {
+  cursor: pointer;
+  padding: 15px 50px;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 10px;
+  user-select: none;
+}
+
+#download a:hover {
+  background-color: rgba(26, 77, 171, 0.8);
+}
+
+#contact {
+  text-align: center;
+  /* background-image: url("img/photo1.webp"); */
+  height: 50vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: darkgray;
+  color: #fff;
+}
+
+#contact p {
+  margin: 10px;
+}
+
+#contact p a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all ease-in-out 0.2s;
+  color: #fff;
+}
+
+#contact p svg {
+  width: 30px;
+  height: 30px;
+}
+
+#contact p a:hover {
+  color: #a2c1ff;
+  text-decoration: underline;
+}
+
+/*footer*/
+footer {
+  text-align: center;
+  font-size: 10pt;
+}
+
+/* fix colors, events layout?? and the csv thing, more events, add arrow to events box*/
